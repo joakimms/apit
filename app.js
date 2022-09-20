@@ -1,19 +1,16 @@
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
-const handleRequest = (request) => {
-  const url = new URL(request.url);
-  const params = url.searchParams;
-
-  const one = Number(params.get("one"));
-  const two = Number(params.get("two"));
-
-  return new Response(`Sum: ${one + two}`);
+const responseDetails = {
+  headers: { "Content-Type": "text/html;charset=UTF-8" },
 };
 
-let port = 7777;
-if (Deno.args.length > 0) {
-  const lastArgument = Deno.args[Deno.args.length - 1];
-  port = Number(lastArgument);
-}
+let count = 0;
 
-serve(handleRequest, { port: port });
+const handleRequest = (request) => {
+  count++;
+  const content = `<html><head></head><body><h1>${count}</h1></body></html>`;
+
+  return new Response(content, responseDetails);
+};
+
+serve(handleRequest, { port: 7777 });
