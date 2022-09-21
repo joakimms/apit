@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Title</title>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/">Index</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact us</a></li>
-      </ul>
-    </nav>
-  </body>
-</html>
+import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+
+const handleRequest = (request) => {
+  return new Response("Hello world!");
+};
+
+serve(handleRequest, { port: 7777 });
